@@ -85,7 +85,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'sinking',
         'USER': 'postgres',
-        'PASSWORD': 'c65db63gg5353eDDBbE5Ga41AGcC-b*3',
+        'PASSWORD': 'c65db63gg5353eDDBbE5Ga41AGcC-b*3 psql -h monorail.proxy.rlwy.net'
+                    ' -U postgres -p 21605 -d sinking',
         'HOST': 'monorail.proxy.rlwy.net',
         'PORT': '21605',
     }
