@@ -1,0 +1,34 @@
+Members:
+    uname: doe.john
+    pword: P@$$w0rd123
+    fullname: John Doe
+
+    uname: doe.james
+    pword: P@$$w0rd123
+    fullname: James Doe
+
+    uname: doe.jane
+    pword: P@$$w0rd123
+    fullname: Jane Doe
+
+    uname: doe.janna
+    pword: P@$$w0rd123
+    fullname: Janna Doe
+
+    uname: doe.joe
+    pword: P@$$w0rd123
+    fullname: Joe Doe
+
+    uname: doe.janngo
+    pword: P@$$w0rd123
+    fullname: Janngo Doe
+
+    ------------------------
+    uname: doe.jeremy
+    pword: P@$$w0rd123
+    fullname: Jeremy Doe
+
+
+
+
+

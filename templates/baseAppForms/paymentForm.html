@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load mathfilters %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">Member having outstanding balance.</li>
+                    {% for payment in paymentGroup%}
+                        {% if payment.loanAccount__desiredAmount|sub:payment.gcount != 0 %}
+                            <li class="list-group-item">{{payment.loanAccount__requestor__fName}}
+                                {{payment.loanAccount__requestor__lName}} -
+                                {{payment.loanAccount__desiredAmount|sub:payment.gcount}}
+                                / ({{payment.loanAccount__id}})
+                            </li>
+                        {% else %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <hr/>
+                <h5>Latest Loan Granted: {{latestAccepted}}</h5>
+
+        </div>
+
+        <div class="col-sm-6 border">
+            <h3><strong>Payment Form</strong></h3>
+
+        <div class="col-sm-12">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Loan ID:</span>
+                    {% render_field form.loanAccount class="form-select"%}
+
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Payment Amount:</span>
+                    {% render_field form.amount class="form-control" id=""%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Status:</span>
+                    {% render_field form.status class="form-select" id=""%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Receiving By:</span>
+                    {% render_field form.receivingBy class="form-select" id=""%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Comment:</span>
+                    {% render_field form.comment class="form-control" id=""%}
+                </div>
+
+
+                <input aria-controls="offcanvasTop" class="btn btn-primary"
+                       data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
+                       type="submit" value="Submit"/>
+                &nbsp; &nbsp;
+                <button class="btn btn-primary">
+                    <a href="{% url 'manager' %}" style="color:white; text-decoration:none;">Cancel
+                    </a>
+                </button>
+            </form>
+        </div>
+
+        </div>
+
+        <div class="col-sm-3">
+
+        </div>
+
+    </div> <!--End of row-->
+</div> <!-- End of div container -->
+
+{% endblock %}

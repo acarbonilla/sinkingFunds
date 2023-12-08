@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+
+        </div>
+            <div class="col-sm-8">
+                <h3>Contribution Table</h3>
+                <hr>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Contrib ID</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Date Contribute</th>
+                        <th scope="col">Received By</th>
+                        <th scope="col">Comment</th>
+                    </tr>
+                    </thead>
+                    {% for contributions in contribution %}
+                        <tbody>
+                            <tr>
+                                <td>{{contributions.id}}</td>
+                                <td>{{contributions.amount}}</td>
+                                <td>{{contributions.paidOn}}</td>
+                                <td>{{contributions.receivedBy}}</td>
+                                <td>{{contributions.comment}}</td>
+                            </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+             <div class="col-sm-2">
+                <button class="btn btn-primary">
+                    <a href="{% url 'member' %}" style="color:white; text-decoration:none;">Back
+                    </a>
+                </button>
+             </div>
+    </div>
+</div>
+
+{% endblock %}

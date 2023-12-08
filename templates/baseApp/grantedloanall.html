@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <br/>
+    <div class="row">
+        <div class="col-sm-3">
+             <form action="#" class="d-flex" method="GET">
+                 <label>
+                     <a class="btn btn-info text-white" href="#">All List</a>
+                 </label>
+                 &nbsp;
+                 <input aria-label="search" class="form-control me-2" name="g" placeholder="Search By Name..."
+                        type="search">
+             </form>
+            <a href="{%url 'grantedLoanAll'%}?q=dateApplied">ID</a>
+        </div>
+
+        <div class="col-sm-8 mb-1 border">
+            <h3> All Loan Granted View</h3>
+            <table class="table table-hover">
+
+                <thead>
+                <tr>
+                    <th scope="col">Loan ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date Applied</th>
+                    <th scope="col">Date Decide</th>
+                    <th scope="col">Manager</th>
+                </tr>
+                </thead>
+                {% for granted in loanGranted %}
+                <tbody>
+                    <tr>
+                        <td>{{granted.id}}</td>
+                        <td>{{granted.requestor.fName}} {{granted.requestor.lName}}</td>
+                        <td>{{granted.desiredAmount}}</td>
+                        <td>{{granted.dateApplied}}</td>
+                        <td>{{granted.dateDecision}}</td>
+                        <td>{{granted.approver}}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

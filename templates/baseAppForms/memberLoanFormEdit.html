@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<style>
+    #readonly{
+
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+
+        </div>
+
+        <div class="col-sm-6 border">
+            <h2>Loan Application Form</h2>
+            <h5 align="center" class="tile-content" id="txt"> </h5>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Requested By:</span>
+                   {% render_field form.requestor class="form-control" id=""%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Amount To Borrow:</span>
+                    {% render_field form.desiredAmount class="form-control" id=""%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Status:</span>
+                    {% render_field form.status class="form-select" id=""%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Date Decision:</span>
+                    {% render_field form.dateDecision class="form-control" id=""%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Manager:</span>
+                    {% render_field form.approver class="form-select" id=""%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Reason:</span>
+                    {% render_field form.comment class="form-control" id=""%}
+                </div>
+                    <input aria-controls="offcanvasTop" class="btn btn-primary"
+                           data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
+                           type="submit" value="Submit"/>
+                    <button class="btn btn-primary" >
+                        <a href="{% url 'manager' %}" style="color:white; text-decoration:none;">Cancel
+                        </a>
+                    </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

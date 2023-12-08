@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <br/>
+    <div class="row">
+        <div class="col-sm-3">
+             <form action="#" class="d-flex" method="GET">
+                 <label>
+                     <a class="btn btn-info text-white" href="#">All List</a>
+                 </label>
+                 &nbsp;
+                 <input aria-label="search" class="form-control me-2" name="g" placeholder="Search By Name..."
+                        type="search">
+             </form>
+
+        </div>
+
+        <div class="col-sm-8 mb-1 border">
+            <h3> All Loan Declined View</h3>
+            <table class="table table-hover">
+
+                <thead>
+                <tr>
+                    <th scope="col">Loan ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date Applied</th>
+                    <th scope="col">Date Decide</th>
+                    <th scope="col">Manager</th>
+                </tr>
+                </thead>
+                {% for declined in loanDeclined %}
+                        <tbody>
+                            <tr>
+                                <td>{{declined.id}}</td>
+                                <td>{{declined.requestor.fName}} {{granted.requestor.lName}}</td>
+                                <td>{{declined.desiredAmount}}</td>
+                                <td>{{declined.dateApplied}}</td>
+                                <td>{{declined.dateDecision}}</td>
+                                <td>{{declined.approver}}</td>
+                               <th scope="row">
+                                   <a href="{% url 'declinedLoanAllDetails' declined.id%}">
+                                            {{declined.id}}
+                                   </a>
+                               </th>
+                            </tr>
+                        </tbody>
+                {% endfor %}
+            </table>
+
+        </div>
+
+
+    </div>
+
+</div>
+{% endblock %}

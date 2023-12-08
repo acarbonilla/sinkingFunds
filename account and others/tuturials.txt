@@ -1,0 +1,23 @@
+Tutorial about forms
+source: https://www.youtube.com/watch?v=VYs-u0g__1A&t=210s&ab_channel=PrettyPrinted
+1. Install tweaks
+    > pip install django-widget-tweaks
+2. Add the tweaks to settings installed apps
+    > 'widget_tweaks',
+3. Inside the template
+    {% load widget_tweaks %}
+4. Use rendered field
+    This is on template
+        > {% render_field form.name class="input" placeholder="" %}
+ "Noted: Effective"
+
+ Tutorial for on Selected for user
+ Source: https://simpleisbetterthancomplex.com/questions/2017/03/22/how-to-dynamically-filter-modelchoices-queryset-in-a-modelform.html
+
+ ------------------------
+ Using group by
+ source: https://stackoverflow.com/questions/629551/how-to-query-as-group-by-in-django
+
+ --------------------
+ Using Mathematics in templates
+ https://stackoverflow.com/questions/9948095/variable-subtraction-in-django-templates

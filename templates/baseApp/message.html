@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>{{loan.comment}}</h1>
+    <div class="comment-wrapper">
+        {% for chat in loanChat %}
+        <h5>From: {{chat.member}}</h5>
+        <p>Message: {{chat.chat}} </p>
+        <small>
+            {% ifchanged chat.updated%}
+         {{chat.updated | timesince}}
+        {% endifchanged %}
+        </small>
+
+        <hr>
+        {% endfor %}
+    </div>
+
+    <div class="comment-form">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input type="text" name="chat" placeholder="Write your message here....">
+        </form>
+    </div>
+<a href="{% url 'declinedLoanAll'%}">Back</a>
+</div>
+
+<!--
+Chat ref.
+source: https://www.youtube.com/watch?v=PtQiiknWUcI&ab_channel=TraversyMedia
+3:04:04
+timesince
+-->
+{% endblock %}

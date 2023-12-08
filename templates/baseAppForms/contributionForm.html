@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <ul class="list-group">
+                <li aria-current="true" class="list-group-item active">Member's Contributors</li>
+                {% for contributors in contribution %}
+                <li class="list-group-item">{{contributors.member}} - Amount: ({{contributors.amount}}) - ID: ({{contributors.id}}) </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-sm-6 border">
+            <h3><strong>Contribution Form</strong></h3>
+
+            <div class="col-sm-12">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Member Name:</span>
+                        {% render_field form.member class="form-select"%}
+
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Contribution Amount:</span>
+                        {% render_field form.amount class="form-control" id=""%}
+                    </div>
+
+                     <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Paid On:</span>
+                        {% render_field form.paidOn class="form-control" id=""%}
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Received By:</span>
+                        {% render_field form.receivedBy class="form-select" id=""%}
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Comment:</span>
+                        {% render_field form.comment class="form-control" id=""%}
+                    </div>
+
+
+                    <input aria-controls="offcanvasTop" class="btn btn-primary"
+                           data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
+                           type="submit" value="Submit"/>
+                    &nbsp; &nbsp;
+                    <button class="btn btn-primary">
+                        <a href="{% url 'manager' %}" style="color:white; text-decoration:none;">Cancel
+                        </a>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="col-sm-3">
+
+        </div>
+
+    </div> <!--End of row-->
+</div> <!-- End of div container -->
+
+{% endblock %}

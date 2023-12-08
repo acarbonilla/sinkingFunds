@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <br/>
+    <div class="row">
+        <div class="col-sm-3">
+             <form action="{% url 'contributionView' %}" class="d-flex" method="GET">
+                 <label>
+                     <a class="btn btn-info text-white" href="{% url 'contributionView' %}">All List</a>
+                 </label>
+                 &nbsp;
+                 <input aria-label="search" class="form-control me-2" name="g" placeholder="Search By Name..."
+                        type="search">
+             </form>
+
+        </div>
+
+        <div class="col-sm-8 mb-1 border">
+            <h3> Contribution View</h3>
+            <table class="table table-hover">
+
+                <thead>
+                <tr>
+                    <th scope="col">Contrib ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Paid On</th>
+                    <th scope="col">Received By</th>
+                </tr>
+                </thead>
+                {% for contributions in contribFilter %}
+                <tbody>
+                <tr>
+                    <td>{{contributions.id}}</td>
+                    <td>{{contributions.member.fName}} {{contributions.member.lName}}</td>
+                    <td>{{contributions.amount}}</td>
+                    <td>{{contributions.paidOn}}</td>
+                    <td>{{contributions.receivedBy}}</td>
+
+                </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

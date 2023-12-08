@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<style>
+    #hideme{
+    background-color:orange;
+    display:none;
+    }
+
+</style>
+<div class="container">
+    <div class="row border" id="attendance">
+        <h5>Loan Application Form</h5>
+        <h5 align="center" class="tile-content" id="txt">
+        </h5>
+        <div class="col-sm-12">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Requested By:</span>
+                    {% render_field form.requestor class="form-select"%}
+
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Amount To Borrow:</span>
+                    {% render_field form.desiredAmount class="form-control" id=""%}
+                </div>
+
+                {% if user.is_staff %}
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Status:</span>
+                    {% render_field form.status class="form-select" id=""%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Date Decision:</span>
+                    {% render_field form.dateDecision class="form-select" id=""%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Approved By:</span>
+                    {% render_field form.approver class="form-select" id=""%}
+                </div>
+
+                {% else %}
+                <div class="input-group mb-3" id="hideme">
+                    <span class="input-group-text" id="basic-addon3">Status:</span>
+                    {% render_field form.status class="form-select" id=""%}
+                </div>
+
+                <div class="input-group mb-3" id="hideme">
+                    <span class="input-group-text" id="basic-addon3">Date Decision:</span>
+                    {% render_field form.dateDecision class="form-select" id=""%}
+                </div>
+
+                <div class="input-group mb-3" id="hideme">
+                    <span class="input-group-text" id="basic-addon3">Approved By:</span>
+                    {% render_field form.approver class="form-select" id=""%}
+                </div>
+
+
+
+                {% endif %}
+
+                    <input aria-controls="offcanvasTop" class="btn btn-primary"
+                           data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
+                           type="submit" value="Submit"/>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+{% block content %}
+<style>
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            {% for member in members %}
+            {% if member.uname.id == user.id%}
+            <ul class="list-group">
+                <li aria-current="true" class="list-group-item active"><h3>Profile Account</h3></li>
+                <li class="list-group-item">Name: {{member.fName}} {{member.lName}}</li>
+                <li class="list-group-item">Join On: {{member.joinOn}}</li>
+                <li class="list-group-item">Username: {{member.uname}}</li>
+                <li class="list-group-item">ID Member: {{member.id}}</li>
+            </ul>
+            <br/>
+            {% endif %}
+            {% endfor %}
+            <br/>
+        </div>
+
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Contribution</h2>
+                    <hr/>
+                    <p class="card-text">Contribution: <span class="badge bg-secondary">{{numContrib}}</span>
+                    </p>
+                    <p class="card-text">Contribution Amount: <span
+                            class="badge bg-secondary">₱ {{contribAmount.amount}}</span></p>
+
+                    <!-- <p class="card-text">Recent Contribute: <span class="badge bg-secondary">{{latestContrib}}</span>
+                    </p> -->
+                </div>
+                <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'memberContrib' %}">
+                    + See List</a></div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Loan Application</h2>
+                    <hr/>
+                    <p class="card-text">Pending: <span class="badge bg-secondary">{{pending}}</span></p>
+                    <p class="card-text">Declined: <span class="badge bg-secondary">{{declined}}</span></p>
+                </div>
+                <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'pendingDeclined' %}">
+                    + See List</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+
+        </div>
+
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Loan Granted</h2>
+                    <hr/>
+                    <p class="card-text">Total Granted: <span class="badge bg-secondary">
+                        {{accepted}}</span></p>
+                    <p class="card-text">Overall Loan Amount: <span class="badge bg-secondary">
+                        ₱ {{latestAccepted.desired}}</span></p>
+
+                </div>
+                <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'grantedLoan' %}">
+                    + See List</a></div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Loan Active</h2>
+                    <hr/>
+                    {% for payment in paymentGroup %}
+                    {% if payment.loanAccount__requestor__uname__id == user.id %}
+                    {% if payment.loanAccount__desiredAmount|sub:payment.gcount == 0%}
+                    {% else %}
+                    <p class="card-text">Loan ID: <span class="badge bg-secondary">
+                       {{payment.loanAccount__id}}</span></p>
+                    <p class="card-text">Balance: <span class="badge bg-secondary">
+                                   ₱ {{payment.loanAccount__desiredAmount|sub:payment.gcount}}</span></p>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+
+                </div>
+                <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'loanActive' %}">
+                    + See List</a></div>
+            </div>
+        </div>
+    </div>
+
+
+</div><!-- End of Div container -->
+
+{% endblock %}
